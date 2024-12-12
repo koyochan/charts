@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js - 多種類チャート</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            margin: 20px;
+        }
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .chart-box {
+            flex: 1 1 calc(50% - 40px);
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Chart.js - 多種類チャート</h1>
+    <div class="chart-container">
+        <div class="chart-box"><canvas id="areaChart"></canvas></div>
+        <div class="chart-box"><canvas id="barChart"></canvas></div>
+        <div class="chart-box"><canvas id="bubbleChart"></canvas></div>
+        <div class="chart-box"><canvas id="doughnutChart"></canvas></div>
+        <div class="chart-box"><canvas id="lineChart"></canvas></div>
+        <div class="chart-box"><canvas id="mixedChart"></canvas></div>
+        <div class="chart-box"><canvas id="polarAreaChart"></canvas></div>
+        <div class="chart-box"><canvas id="radarChart"></canvas></div>
+        <div class="chart-box"><canvas id="scatterChart"></canvas></div>
+    </div>
+
+    <script>
+        const randomData = () => Array.from({ length: 5 }, () => Math.floor(Math.random() * 100) + 1);
+
+        // Area Chart
+        new Chart(document.getElementById('areaChart'), {
+            type: 'line',
+            data: {
+                labels: ['A', 'B', 'C', 'D', 'E'],
+                datasets: [{
+                    label: 'エリアチャート',
+                    data: randomData(),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: true
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Bar Chart
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: ['A', 'B', 'C', 'D', 'E'],
+                datasets: [{
+                    label: 'バーチャート',
+                    data: randomData(),
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Bubble Chart
+        new Chart(document.getElementById('bubbleChart'), {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: 'バブルチャート',
+                    data: [{ x: 10, y: 20, r: 15 }, { x: 20, y: 10, r: 10 }, { x: 15, y: 25, r: 20 }],
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)'
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Doughnut Chart
+        new Chart(document.getElementById('doughnutChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['A', 'B', 'C'],
+                datasets: [{
+                    data: [30, 50, 20],
+                    backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)']
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Line Chart
+        new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: ['A', 'B', 'C', 'D', 'E'],
+                datasets: [{
+                    label: 'ラインチャート',
+                    data: randomData(),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Mixed Chart
+        new Chart(document.getElementById('mixedChart'), {
+            type: 'bar',
+            data: {
+                labels: ['A', 'B', 'C', 'D', 'E'],
+                datasets: [
+                    {
+                        type: 'bar',
+                        label: 'バー',
+                        data: randomData(),
+                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                        borderColor: 'rgba(153, 102, 255, 1)'
+                    },
+                    {
+                        type: 'line',
+                        label: 'ライン',
+                        data: randomData(),
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)'
+                    }
+                ]
+            },
+            options: { responsive: true }
+        });
+
+        // Polar Area Chart
+        new Chart(document.getElementById('polarAreaChart'), {
+            type: 'polarArea',
+            data: {
+                labels: ['A', 'B', 'C'],
+                datasets: [{
+                    data: [30, 50, 20],
+                    backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)']
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Radar Chart
+        new Chart(document.getElementById('radarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['A', 'B', 'C', 'D', 'E'],
+                datasets: [{
+                    label: 'レーダーチャート',
+                    data: randomData(),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Scatter Chart
+        new Chart(document.getElementById('scatterChart'), {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'スキャッターチャート',
+                    data: [{ x: 10, y: 20 }, { x: 20, y: 10 }, { x: 15, y: 25 }],
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)'
+                }]
+            },
+            options: { responsive: true }
+        });
+    </script>
+</body>
+</html>
